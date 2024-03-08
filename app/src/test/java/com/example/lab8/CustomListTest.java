@@ -11,6 +11,7 @@ import java.util.ArrayList;
 public class CustomListTest {
 
     private CustomList list;
+    private Context context;
 
     @BeforeEach
     public void createMockList() {
@@ -43,6 +44,14 @@ public class CustomListTest {
         assertFalse(list.hasCity(city.getCityName()));
     }
 
+    @Test
+    public void testCountCities() {
+        CustomList cityList = new CustomList(context, new ArrayList<>());
+        cityList.addCity(new City("Edmonton", "AB"));
+        int initialSize = cityList.countCities(); // should be 1
+        cityList.addCity(new City("Calgary", "AB"));
+        assertEquals(initialSize + 1, cityList.countCities());
+    }
 
 
 
